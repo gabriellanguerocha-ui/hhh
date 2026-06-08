@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap");
 
 :root {
-  --cor-de-fundo: #1e1e1e;
-  --verde: #6fff57;
-  --branco: #ffffff;
-  --botao-ativo: #3a375e;
-  --botao-inativo: rgba(58, 55, 94, 0.5);
-  --texto-fundo: rgba(58, 55, 94, 0.3);
+  --cor-de-fundo: #000000;
+  --verde: #10269e;
+  --branco: #4bd5ff;
+  --botao-ativo: #04002e;
+  --botao-inativo: rgba(7, 0, 77, 0.5);
+  --texto-fundo: rgba(8, 2, 73, 0.842);
 }
 
 body {
@@ -25,6 +25,16 @@ body {
   margin: 0 auto;
 }
 
+.conteudo {
+  width: min(900px, 90%);
+  max-width: 900px;
+  margin: 20px auto 0;
+  padding: 32px;
+  background-color: rgba(21, 20, 38, 0.95);
+  border-radius: 40px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
+}
+
 .titulo-principal {
   text-align: left;
   width: 100%;
@@ -36,7 +46,7 @@ body {
 }
 
 .botao {
-  font-family: "Crakra Petch", sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   background-color: var(--botao-inativo);
   color: var(--branco);
   display: flex;
@@ -44,37 +54,72 @@ body {
   padding: 1em;
   font-size: 18px;
   align-items: center;
-  width: 100%;
+  flex: 1 1 auto;
+  width: auto;
+  text-align: center;
+  cursor: pointer;
   border-bottom: 4px solid var(--botao-ativo);
   border-left: 2px solid var(--botao-ativo);
   border-right: 2px solid var(--botao-ativo);
   border-top: none;
 }
-
-.botao:first-child {
-  border-radius: 40px 40px 0 0;
+.botoes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  margin: 20px auto 0;
+  align-items: stretch;
+}
+/* content area width is handled by .conteudo */
+.botoes,
+.abas-textos {
+  box-sizing: border-box;
 }
 
-@media screen and (min-width: 768px) {
-  /* Código omitido */
-   .botoes {
-    display: flex;
+@media screen and (min-width: 600px) {
+  .botoes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-}
-.botao:first-child {
+
+  .botoes .botao:nth-child(1) {
     border-radius: 40px 0 0 0;
   }
-  .botao:last-child {
+
+  .botoes .botao:nth-child(2) {
     border-radius: 0 40px 0 0;
   }
-.ativo {
+
+  .botoes .botao:nth-child(3) {
+    border-radius: 0 0 0 40px;
+  }
+
+  .botoes .botao:nth-child(4) {
+    border-radius: 0 0 40px 0;
+  }
+}
+
+.botao.ativo {
   background-color: var(--botao-ativo);
   border-bottom: 4px solid var(--verde);
 }
+
+.botao {
+  min-height: 70px;
+}
+
+.botoes {
+  width: 100%;
+}
+
 .abas-textos {
   background-color: var(--texto-fundo);
   padding: 40px;
-  border-radius: 0 0 40px 40px;
+  width: 100%;
+  margin: 24px 0 0;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .botao.ativo {
@@ -89,4 +134,23 @@ body {
   text-align: center;
   color: var(--verde);
   text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.tempo-contagem {
+  text-align: center;
+  color: var(--branco);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin-top: 10px;
+}
+
+/* esconder por padrão; JS controla a visibilidade */
+.aba-conteudo {
+  display: none;
+}
+
+.aba-conteudo.ativa {
+  display: block;
 }
